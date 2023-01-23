@@ -69,6 +69,10 @@ public class PlayerMovement : MonoBehaviour
         if(inputHorizontal==0 && inputVertical == 0)
         {
            enemyPos =_enemyGenerator.GetNearestEnemy();
+            if(enemyPos == null)
+            {
+                return;
+            }
             Vector3 lookDirection = enemyPos.position - transform.position;
             if (lookDirection != Vector3.zero)
             {

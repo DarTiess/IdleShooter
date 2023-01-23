@@ -12,21 +12,29 @@ public class EnemyGenerator : MonoBehaviour
 
     LevelManager _levelManager;
     GameObject _player;
+    Economics _economics;
 
     [Inject]
-    private void Initialization(LevelManager levelManager, PlayerMovement player)
+    private void Initialization(LevelManager levelManager, PlayerMovement player, Economics economics)
     {
         _levelManager = levelManager;
         _player=player.gameObject;
         _levelManager.OnLevelPlay += OnPlay;
         player._enemyGenerator=this;
+        _economics=economics;
+        _economics.OnGetMoney += DeleteEnemyFromList;
+    }
+
+    private void DeleteEnemyFromList(EnemyMovement enemy)
+    {
+       _enemyOnScene.Remove(enemy);
     }
 
     private void OnPlay()
     {
         foreach (EnemyMovement enemy in _enemyOnScene)
         {
-            enemy.OnPlay(_player);
+            enemy.OnPlay(_player, _economics);
         }
     }
 

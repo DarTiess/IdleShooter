@@ -597,11 +597,13 @@ MonoBehaviour:
   _behavior: 0
   _typeOfMove: 0
   _speedMove: 5
-  _distanceFromPlayer: 9
+  _rotationSpeed: 9
+  _distanceFromPlayer: 6
   _timeToStay: 0
-  _health: 0
+  _health: 3
   _speedAttack: 0
   _makeDamage: 0
+  _price: 3
 --- !u!195 &5411551430985854479
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -15,15 +15,18 @@ public class CanvasControl : MonoBehaviour
     [SerializeField] private CanvasGroup _panelLost;
     [SerializeField]private Text _timer;
     [SerializeField]private float _timeToStart;
+    [SerializeField]private Text _money;
     
      List<CanvasGroup> _canvasGroupes = new List<CanvasGroup>();
 
     LevelManager _levelManager;
+    Economics _economics;
 
     [Inject]
-    void Initialization(LevelManager LevelManager)
+    void Initialization(LevelManager LevelManager, Economics economics)
     {
         _levelManager = LevelManager;
+        _economics= economics;
     }
     
     private void Start()

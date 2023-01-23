@@ -12,7 +12,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private GameObject bulletPref;
     [SerializeField] private int countBullets;
     [SerializeField] private float _attackDuration;
-    [SerializeField] private float _attackPower;
+    [SerializeField] private int _attackPower;
     List<GameObject> _bulletsList=new List<GameObject>();
    
      GameObject currentBullet;
@@ -51,7 +51,7 @@ public class PlayerAttack : MonoBehaviour
             currentBullet.SetActive(true);
             currentBullet.transform.DOMove(target.position+ new Vector3(0,1.5f,0), _attackDuration).OnComplete(() =>
             {
-              // target.gameObject.GetComponent<EnemyMovement>().TakeDamage(_attackPower);
+               target.gameObject.GetComponent<EnemyMovement>().TakeDamage(_attackPower);
                currentBullet.transform.position = target.transform.position;
                currentBullet.transform.parent = target.transform;
                currentBullet.SetActive(false);

@@ -12,29 +12,44 @@ public class EnemyMovement : MonoBehaviour
    [SerializeField] private EnemyBehavior _behavior;
     [SerializeField]private EnemyMove _typeOfMove;
     [SerializeField]private float _speedMove;
+    [SerializeField]private float _rotationSpeed;
     [SerializeField]private float _distanceFromPlayer;
    [SerializeField] private float _timeToStay;
     [SerializeField]private int _health;
     [SerializeField]private float _speedAttack;
     [SerializeField] private int _makeDamage;
+    [SerializeField] private int _price;
 
     private NavMeshAgent _navMesh;
     private bool _canMove;
     private GameObject _player;
- 
+    private Economics _economics;
 
 
-    public void OnPlay(GameObject player)
+    public void OnPlay(GameObject player, Economics economics)
     {
         _player=player;
+        _economics=economics;
         _canMove=true;
     }
 
-    internal void TakeDamage(object attackPower)
+    public void TakeDamage(int attackPower)
     {
-        throw new NotImplementedException();
+       _health-=attackPower;
+        if(_health<=0)
+        {
+            OnDestroidEnemy();
+        }
     }
 
+    void OnDestroidEnemy()
+    {
+        _navMesh.isStopped= true;
+          gameObject.SetActive(false);
+        _economics.GetMoney(_price, this);
+       //добавляем мани плееру
+       //удаляем с листа енеми
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -48,16 +63,22 @@ public class EnemyMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(_canMove)
         {
-            _navMesh.SetDestination(_player.transform.position);
+           Move();
         }   
     }
 
     private void Move()
     {
-        
+          Vector3 lookDirection = _player.transform.position - transform.position;
+            if (lookDirection != Vector3.zero)
+            {
+                transform.localRotation = Quaternion.Slerp(transform.localRotation,
+                    Quaternion.LookRotation(lookDirection), _rotationSpeed * Time.fixedDeltaTime);
+            }
+         _navMesh.SetDestination(_player.transform.position);
     }
 }
