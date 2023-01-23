@@ -5,6 +5,7 @@ using Zenject;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(PlayerAnimator))]
+[RequireComponent(typeof(PlayerAttack))]
 public class PlayerMovement : MonoBehaviour
 {
 
@@ -21,10 +22,11 @@ public class PlayerMovement : MonoBehaviour
     private NavMeshAgent _nav;
 
     private PlayerAnimator _anim;
-
+    private PlayerAttack _playerAttack;
+    [HideInInspector]public EnemyGenerator _enemyGenerator;
     //helpers
     private Vector3 _temp;
-    private bool _canMove;
+    public bool _canMove;
 
     private LevelManager _levelManager;
 
@@ -38,16 +40,19 @@ public class PlayerMovement : MonoBehaviour
     public void OnPlay()
     {
        _canMove= true;
+       _nav=GetComponent<NavMeshAgent>();
     }
 
     private void Start()
     {
         _anim = GetComponent<PlayerAnimator>();
-        _nav = GetComponent<NavMeshAgent>();  
+        _playerAttack= GetComponent<PlayerAttack>();
+        _playerAttack.InitBullets();
     }
 
     private void FixedUpdate()
     {
+       
         if (!_canMove)
         {
             return;
@@ -55,13 +60,26 @@ public class PlayerMovement : MonoBehaviour
         
         Move();
     }
-
+    Transform enemyPos;
     private void Move()
     {
         float inputHorizontal = SimpleInput.GetAxis(HorizontalAxis);
         float inputVertical = SimpleInput.GetAxis(VerticalAxis);
 
-            _temp.x = inputHorizontal;
+        if(inputHorizontal==0 && inputVertical == 0)
+        {
+           enemyPos =_enemyGenerator.GetNearestEnemy();
+            Vector3 lookDirection = enemyPos.position - transform.position;
+            if (lookDirection != Vector3.zero)
+            {
+                transform.localRotation = Quaternion.Slerp(transform.localRotation,
+                    Quaternion.LookRotation(lookDirection), _rotationSpeed * Time.fixedDeltaTime);
+            }
+            _playerAttack.AttackEnemy(enemyPos);
+        }
+        else
+        {
+              _temp.x = inputHorizontal;
             _temp.z = inputVertical;
            
            _anim.MoveAnimation(_temp.magnitude);         
@@ -75,6 +93,10 @@ public class PlayerMovement : MonoBehaviour
                 transform.localRotation = Quaternion.Slerp(transform.localRotation,
                     Quaternion.LookRotation(lookDirection), _rotationSpeed * Time.deltaTime);
             }
+        }
+          
+
+            
     }
    
 }

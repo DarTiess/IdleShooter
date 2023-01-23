@@ -19,6 +19,7 @@ public class EnemyGenerator : MonoBehaviour
         _levelManager = levelManager;
         _player=player.gameObject;
         _levelManager.OnLevelPlay += OnPlay;
+        player._enemyGenerator=this;
     }
 
     private void OnPlay()
@@ -45,5 +46,23 @@ public class EnemyGenerator : MonoBehaviour
           EnemyMovement enemy=Instantiate(_enemyList[i], setPosition, transform.rotation);
           _enemyOnScene.Add(enemy);
         }
+    }
+
+    public Transform GetNearestEnemy()
+    {
+        Transform enemyPosition=null;
+
+        float distanceMin=100;
+        foreach(EnemyMovement enemy in _enemyOnScene)
+        {
+           float distance=Vector3.Distance(_player.transform.position, enemy.gameObject.transform.position);
+            if (distance < distanceMin)
+            {
+                distanceMin=distance;
+                enemyPosition=enemy.gameObject.transform;
+            }
+        }
+
+        return enemyPosition;
     }
 }

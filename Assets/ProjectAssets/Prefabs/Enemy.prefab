@@ -537,9 +537,10 @@ GameObject:
   - component: {fileID: 1565587810547604788}
   - component: {fileID: 5411551430985854478}
   - component: {fileID: 5411551430985854479}
+  - component: {fileID: 8028183323718562298}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -601,7 +602,6 @@ MonoBehaviour:
   _health: 0
   _speedAttack: 0
   _makeDamage: 0
-  _canMove: 0
 --- !u!195 &5411551430985854479
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -624,6 +624,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &8028183323718562298
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5578640287629918813}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 3.6819246
+  m_Direction: 1
+  m_Center: {x: -0, y: 1.3409623, z: 0}
 --- !u!1 &5738688660028810721
 GameObject:
   m_ObjectHideFlags: 0

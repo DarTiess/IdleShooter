@@ -19,7 +19,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private int _makeDamage;
 
     private NavMeshAgent _navMesh;
-    public bool _canMove;
+    private bool _canMove;
     private GameObject _player;
  
 
@@ -28,6 +28,11 @@ public class EnemyMovement : MonoBehaviour
     {
         _player=player;
         _canMove=true;
+    }
+
+    internal void TakeDamage(object attackPower)
+    {
+        throw new NotImplementedException();
     }
 
 
@@ -49,5 +54,10 @@ public class EnemyMovement : MonoBehaviour
         {
             _navMesh.SetDestination(_player.transform.position);
         }   
+    }
+
+    private void Move()
+    {
+        
     }
 }

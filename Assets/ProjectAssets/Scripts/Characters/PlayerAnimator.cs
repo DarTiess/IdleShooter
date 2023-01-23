@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
+
 
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimator : MonoBehaviour
