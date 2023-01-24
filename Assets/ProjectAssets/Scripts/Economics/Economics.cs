@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Economics : MonoBehaviour
 {
      public event Action<EnemyMovement> OnGetMoney;
+   
      public event Action OnPayMoney;
     [SerializeField]private Text _money;
     public int Money

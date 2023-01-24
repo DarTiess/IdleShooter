@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
-public class PlayerAttack : MonoBehaviour
+public class PersoneAttack : MonoBehaviour
 {
     [SerializeField] private Transform firePlace;
     [SerializeField] private GameObject bulletPref;
@@ -30,8 +30,9 @@ public class PlayerAttack : MonoBehaviour
         {
             var bullet=Instantiate(bulletPref, firePlace.position, firePlace.rotation);
             bullet.SetActive(false);
-            bullet.transform.parent = gameObject.transform;
+            bullet.transform.parent = firePlace;
            bullet.transform.position =firePlace.position;
+            bullet.GetComponent<Bullet>().SetAttackPower(_attackPower, transform.tag);
             _bulletsList.Add(bullet);
         }
     }
@@ -51,15 +52,14 @@ public class PlayerAttack : MonoBehaviour
             currentBullet.SetActive(true);
             currentBullet.transform.DOMove(target.position+ new Vector3(0,1.5f,0), _attackDuration).OnComplete(() =>
             {
-               target.gameObject.GetComponent<EnemyMovement>().TakeDamage(_attackPower);
-               currentBullet.transform.position = target.transform.position;
-               currentBullet.transform.parent = target.transform;
                currentBullet.SetActive(false);
                 _isOnAtack = false;
               
             });
       }
+
   
+
     private GameObject GetFreeBall()
     {
        GameObject bull=null;

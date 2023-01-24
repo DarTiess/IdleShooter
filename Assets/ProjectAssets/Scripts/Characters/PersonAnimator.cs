@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(Animator))]
-public class PlayerAnimator : MonoBehaviour
+public class PersonAnimator : MonoBehaviour
 {
     private Animator _animator;
     // Start is called before the first frame update
@@ -17,4 +17,19 @@ public class PlayerAnimator : MonoBehaviour
     {
          _animator.SetFloat("IsMove",speed);
     }
+
+    public void DeadAnimation()
+    {
+        _animator.SetTrigger("Lose");
+    }
+
+    public void GetTreeAnimation()
+    {
+        _animator.SetBool("GetTree", true);
+    }
+    public void EndTreeAnimation()
+    {
+        _animator.SetBool("GetTree", false);
+    }
+
 }
