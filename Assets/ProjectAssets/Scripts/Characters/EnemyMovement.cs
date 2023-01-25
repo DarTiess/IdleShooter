@@ -42,7 +42,7 @@ public class EnemyMovement : MonoBehaviour, IHealth
         if(_typeOfMove == EnemyMove.Flying)
         {
             _navMesh.baseOffset=4f;
-            _flyingEffect.Play();
+            _flyingEffect.Play();      
         }
         else
         {

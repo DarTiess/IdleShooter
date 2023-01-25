@@ -15,12 +15,13 @@ public class Bullet : MonoBehaviour
     {
         if ((other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Enemy"))
             && other.gameObject.tag!=_parentName)
-        {
-          
+        {          
              other.gameObject.GetComponent<IHealth>().TakeDamage(_attackPower);
-           //  transform.position =other.gameObject.transform.position;
-             // transform.parent = other.gameObject.transform;
-            gameObject.SetActive(false);
+             gameObject.SetActive(false);
+        }
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+             gameObject.SetActive(false);
         }
        
     }

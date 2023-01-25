@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Tree
   - Melee
+  - Obstacle
   layers:
   - Default
   - TransparentFX

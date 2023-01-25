@@ -58,7 +58,7 @@ public class LevelManager : MonoBehaviour
     private void LateWin()
     {
         OnLateWin?.Invoke();
-        Time.timeScale = 0;
+        Time.timeScale = 1;
     }
 
                           

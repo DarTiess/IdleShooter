@@ -7,7 +7,7 @@ public class GameInstaller : MonoInstaller
     [SerializeField]private CanvasControl _canvasController;
     [SerializeField]private GameObject _playerPrefab;
     [SerializeField]private EnemyGenerator _enemyGenerator;
-    [SerializeField]private Economics _economics;
+    [SerializeField]private Economics _economics;    
 
     [Header("Player Position Settings")]
     [SerializeField] private Transform _startPosition;
@@ -17,10 +17,13 @@ public class GameInstaller : MonoInstaller
     { 
        BindLevelManager();
        BindCanvasController();
+        BindEconomics();
        BindPlayer();
         BindEnemiesGenerator();
-        BindEconomics();
+       
     }
+
+ 
 
     private void BindLevelManager()
     {
@@ -29,8 +32,8 @@ public class GameInstaller : MonoInstaller
     private void BindCanvasController()
     {
        Container.Bind<CanvasControl>().FromInstance(_canvasController).AsSingle();
-    }
-
+    }  
+   
     void BindPlayer()
     {
          float xPos=Random.Range(_startPosition.position.x,_endPosition.position.x);

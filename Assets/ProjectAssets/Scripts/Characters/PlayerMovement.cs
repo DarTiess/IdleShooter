@@ -31,13 +31,15 @@ public class PlayerMovement : MonoBehaviour, IHealth
     private bool _isOnAttack;
 
     private LevelManager _levelManager;
+    private Economics _economics;
 
     [SerializeField]private int _health;
      [SerializeField]private ParticleSystem _bloodEffect;
     [Inject]
-    private void Initiallization(LevelManager levelManager)
+    private void Initiallization(LevelManager levelManager, Economics economics)
     {
-        _levelManager = levelManager;
+        _levelManager = levelManager;       
+        _economics= economics;
         _levelManager.OnLevelPlay += OnPlay;
     }
 
@@ -57,6 +59,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
         _playerTreeStack= GetComponent<PlayerTreeStack>();
         _healthBar.SetMaxValus(_health);
         _playerAttack.InitBullets();
+        _playerTreeStack.SetBlockStore(_economics);
     }
 
     private void FixedUpdate()
@@ -131,6 +134,11 @@ public class PlayerMovement : MonoBehaviour, IHealth
              }    
                
         }
+        if (other.gameObject.CompareTag("Finish"))
+        {
+            _levelManager.LevelWin();
+            other.gameObject.tag="Untagged";
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -149,8 +157,9 @@ public class PlayerMovement : MonoBehaviour, IHealth
     {
         _playerInventory.GetMelee();
         _anim.GetTreeAnimation();
-      
+      MakeRotation(tree.position);
         _playerTreeStack.TakeTreeBlockToStack(tree);
+
     }
   
     public void StopGettingTree()

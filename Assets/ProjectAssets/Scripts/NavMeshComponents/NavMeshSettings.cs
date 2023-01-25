@@ -18,10 +18,10 @@ public class NavMeshSettings : MonoBehaviour
     private void Start()
     {
         _surface = GetComponent<NavMeshSurface>();
-        _surface.BuildNavMesh();
+      //  _surface.BuildNavMesh();
     }
 
-    private void UpdateNavMesh()
+   private void UpdateNavMesh()
     {
         _surface.UpdateNavMesh(_surface.navMeshData);
         _surface.AddData();

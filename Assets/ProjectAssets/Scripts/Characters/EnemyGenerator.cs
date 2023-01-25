@@ -9,10 +9,12 @@ public class EnemyGenerator : MonoBehaviour
     [Header("Position Settings")]
     [SerializeField] private Transform startPosition;
     [SerializeField] private Transform endPosition;
+    [SerializeField]private GameObject _finishLine;
 
     LevelManager _levelManager;
     GameObject _player;
     Economics _economics;
+
 
     [Inject]
     private void Initialization(LevelManager levelManager, PlayerMovement player, Economics economics)
@@ -40,6 +42,7 @@ public class EnemyGenerator : MonoBehaviour
 
     private void Start()
     {
+         _finishLine.SetActive(false);
         SpawnEnemies();
     }
 
@@ -69,7 +72,10 @@ public class EnemyGenerator : MonoBehaviour
                 enemyPosition=enemy.gameObject.transform;
             }
         }
-
+        if(enemyPosition==null)
+        {
+            _finishLine.SetActive(true);
+        }
         return enemyPosition;
     }
 }

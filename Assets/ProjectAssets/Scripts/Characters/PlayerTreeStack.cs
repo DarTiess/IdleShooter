@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class PlayerTreeStack : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class PlayerTreeStack : MonoBehaviour
     [SerializeField] private AnimationCurve _changeY;
     private float _steep;
     private float _timeInSteep;
+    private Economics _economics;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -28,16 +31,19 @@ public class PlayerTreeStack : MonoBehaviour
         _block.SetActive(false);
     }
 
+    public void SetBlockStore( Economics economics)
+    {
+        _economics=economics;
+    }
     bool _isGettingTree;
     public void TakeTreeBlockToStack(Transform treePosition)
     {
         if(!_isGettingTree)
         {
             _isGettingTree = true;
-            if (_indexBlock < _blockList.Count)
-            {
+            
                 StartCoroutine(Taking(treePosition));
-            }
+            
         }        
     }
   
@@ -46,7 +52,10 @@ public class PlayerTreeStack : MonoBehaviour
         _block.SetActive(true);
          _block.transform.position=treePos.position;
          _block.transform.parent=null;
-        _blockList[_indexBlock].gameObject.SetActive(true);
+        if (_indexBlock < _blockList.Count)
+        {
+           _blockList[_indexBlock].gameObject.SetActive(true);
+        }
         for (int i = 0; i <= _countSteepMagnet; i++)
         {
             Vector3 pos = Vector3.Lerp(treePos.position,new Vector3(_blockPlace.position.x, _yPosForBlock, _blockPlace.position.z), i * _steep);
@@ -64,6 +73,7 @@ public class PlayerTreeStack : MonoBehaviour
         _yPosForBlock+=_boxHeight;
                     _indexBlock++;
          _isGettingTree=false;
+        _economics.GetBlock(1);
         _block.SetActive(false);
     }
 }

@@ -12,9 +12,10 @@ public class CanvasControl : MonoBehaviour
     [SerializeField] private CanvasGroup _panelInGame;
     [SerializeField] private CanvasGroup _panelWin;  
     [SerializeField] private CanvasGroup _panelLost;
+    [SerializeField] private CanvasGroup _panelHeader;
     [SerializeField]private Text _timer;
     [SerializeField]private float _timeToStart;
-    [SerializeField]private Text _money;
+    
     
      List<CanvasGroup> _canvasGroupes = new List<CanvasGroup>();
 
@@ -37,6 +38,9 @@ public class CanvasControl : MonoBehaviour
         _canvasGroupes.Add(_panelWin);
         _canvasGroupes.Add(_panelLost);
 
+        _panelHeader.alpha = 1;
+        _panelHeader.interactable = true;
+        _panelHeader.blocksRaycasts = true;
         SwitchOnAllCanvasObjects();
          ActivateUIScreen(_panelMenu);
     }
@@ -62,7 +66,10 @@ public class CanvasControl : MonoBehaviour
                              
     private void OnLevelWin()      
     {    
-        Debug.Log("Level Win"); 
+        Debug.Log("Level Win");
+        //сделать иконку бревен и монет
+        //кнопка перевода бревен в монетки
+        
        ActivateUIScreen(_panelWin);  
     }
 
