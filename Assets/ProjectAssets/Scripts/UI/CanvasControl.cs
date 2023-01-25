@@ -66,10 +66,7 @@ public class CanvasControl : MonoBehaviour
                              
     private void OnLevelWin()      
     {    
-        Debug.Log("Level Win");
-        //сделать иконку бревен и монет
-        //кнопка перевода бревен в монетки
-        
+        Debug.Log("Level Win");        
        ActivateUIScreen(_panelWin);  
     }
 

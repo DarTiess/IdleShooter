@@ -139,8 +139,19 @@ public class PlayerMovement : MonoBehaviour, IHealth
             _levelManager.LevelWin();
             other.gameObject.tag="Untagged";
         }
+      
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+          if (collision.gameObject.CompareTag("Enemy"))
+          {
+            Debug.Log("Enemy attach");
+           
+            TakeDamage(1);
+            return;
+          }
+    }
     private void OnTriggerExit(Collider other)
     {
         if(!_isOnAttack)

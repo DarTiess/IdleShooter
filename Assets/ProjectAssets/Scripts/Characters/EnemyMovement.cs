@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -149,5 +150,8 @@ public class EnemyMovement : MonoBehaviour, IHealth
         _animator.DeadAnimation();
         _economics.GetMoney(_price, this);
     }
+
+    
+    
 
 }
