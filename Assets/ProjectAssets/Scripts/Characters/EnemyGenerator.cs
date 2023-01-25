@@ -40,7 +40,6 @@ public class EnemyGenerator : MonoBehaviour
 
     private void Start()
     {
-         
         SpawnEnemies();
     }
 

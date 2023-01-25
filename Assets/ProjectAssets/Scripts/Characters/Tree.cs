@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -33,8 +32,7 @@ public class Tree : MonoBehaviour
         if(indexMesh<_meshesList.Count)
         {
              _meshFilter.mesh=_meshesList[indexMesh];
-             indexMesh++;
-           _player.GetTreeBlock(transform);
+             indexMesh++;          
         }
         else
         {

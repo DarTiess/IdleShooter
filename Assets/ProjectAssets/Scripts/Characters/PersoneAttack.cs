@@ -1,10 +1,6 @@
 using DG.Tweening;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using Zenject;
 
 public class PersoneAttack : MonoBehaviour
 {
@@ -48,7 +44,7 @@ public class PersoneAttack : MonoBehaviour
       {        
            currentBullet=GetFreeBall();
            currentBullet.transform.position =firePlace.position; 
-            currentBullet.transform.parent = gameObject.transform;
+            currentBullet.transform.parent = null;
             currentBullet.SetActive(true);
             currentBullet.transform.DOMove(target.position+ new Vector3(0,1.5f,0), _attackDuration).OnComplete(() =>
             {
@@ -57,8 +53,6 @@ public class PersoneAttack : MonoBehaviour
               
             });
       }
-
-  
 
     private GameObject GetFreeBall()
     {

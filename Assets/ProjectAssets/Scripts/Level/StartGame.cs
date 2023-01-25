@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-
 public class StartGame : MonoBehaviour
 {
     public LevelLoader LevelLoader;

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -20,13 +19,11 @@ public class CanvasControl : MonoBehaviour
      List<CanvasGroup> _canvasGroupes = new List<CanvasGroup>();
 
     LevelManager _levelManager;
-    Economics _economics;
-
+ 
     [Inject]
-    void Initialization(LevelManager LevelManager, Economics economics)
+    void Initialization(LevelManager LevelManager)
     {
         _levelManager = LevelManager;
-        _economics= economics;
     }
     
     private void Start()

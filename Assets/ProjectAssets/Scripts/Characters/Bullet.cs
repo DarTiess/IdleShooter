@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
    private int _attackPower;
-    private string _parentName;
+   private string _parentName;
 
     public void SetAttackPower(int attackPower, string parentName)
     {
@@ -18,6 +16,7 @@ public class Bullet : MonoBehaviour
         if ((other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Enemy"))
             && other.gameObject.tag!=_parentName)
         {
+          
              other.gameObject.GetComponent<IHealth>().TakeDamage(_attackPower);
            //  transform.position =other.gameObject.transform.position;
              // transform.parent = other.gameObject.transform;
@@ -25,4 +24,5 @@ public class Bullet : MonoBehaviour
         }
        
     }
+
 }

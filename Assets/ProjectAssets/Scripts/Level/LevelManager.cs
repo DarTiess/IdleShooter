@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System;
-//using GameAnalyticsSDK;
 
 public class LevelManager : MonoBehaviour
 {

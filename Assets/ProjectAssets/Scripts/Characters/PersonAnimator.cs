@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -30,6 +28,11 @@ public class PersonAnimator : MonoBehaviour
     public void EndTreeAnimation()
     {
         _animator.SetBool("GetTree", false);
+    }
+
+    public void FlyingAnimaton(float speed)
+    {
+        _animator.SetFloat("IsFlying", speed);
     }
 
 }

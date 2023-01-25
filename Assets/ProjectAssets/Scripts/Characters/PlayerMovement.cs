@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 
@@ -18,19 +17,15 @@ public class PlayerMovement : MonoBehaviour, IHealth
 
     private const string HorizontalAxis = "Horizontal";
     private const string VerticalAxis = "Vertical";
-
-    // components
-    [Space] [Header("Components && Scripts")]
    
     private NavMeshAgent _nav;
-
     private PersonAnimator _anim;
     private PersoneAttack _playerAttack;
     private HealthBar _healthBar;
     private PlayerInventory _playerInventory;
     private PlayerTreeStack _playerTreeStack;
     [HideInInspector]public EnemyGenerator _enemyGenerator;
-    //helpers
+   
     private Vector3 _temp;
     private bool _canMove;
     private bool _isOnAttack;
@@ -38,6 +33,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
     private LevelManager _levelManager;
 
     [SerializeField]private int _health;
+     [SerializeField]private ParticleSystem _bloodEffect;
     [Inject]
     private void Initiallization(LevelManager levelManager)
     {
@@ -64,13 +60,11 @@ public class PlayerMovement : MonoBehaviour, IHealth
     }
 
     private void FixedUpdate()
-    {
-       
+    {       
         if (!_canMove)
         {
             return;
-        }
-        
+        }        
         Action();
     }
     Transform enemyPos;
@@ -103,7 +97,6 @@ public class PlayerMovement : MonoBehaviour, IHealth
     }
     void Move(float inputHorizontal, float inputVertical)
     {
-        //_isOnAttack=false;
          _temp.x = inputHorizontal;
          _temp.z = inputVertical;
            
@@ -159,10 +152,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
       
         _playerTreeStack.TakeTreeBlockToStack(tree);
     }
-    public void GetTreeBlock(Transform tree)
-    {
-      // _playerTreeStack.TakeTreeBlockToStack(tree);
-    }
+  
     public void StopGettingTree()
     {
        _playerInventory.GetGun();
@@ -172,6 +162,7 @@ public class PlayerMovement : MonoBehaviour, IHealth
     {
         if (_health > 0)
         {
+            _bloodEffect.Play();
              _health-=attackpower;
         _healthBar.SetBadValues(attackpower);
         }

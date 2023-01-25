@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,11 +19,6 @@ public class NavMeshSettings : MonoBehaviour
     {
         _surface = GetComponent<NavMeshSurface>();
         _surface.BuildNavMesh();
-    }
-
-    void Update()
-    {
-        
     }
 
     private void UpdateNavMesh()
