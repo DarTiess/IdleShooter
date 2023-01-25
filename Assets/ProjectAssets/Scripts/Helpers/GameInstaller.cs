@@ -23,8 +23,6 @@ public class GameInstaller : MonoInstaller
        
     }
 
- 
-
     private void BindLevelManager()
     {
          Container.Bind<LevelManager>().FromInstance(_levelManager).AsSingle();

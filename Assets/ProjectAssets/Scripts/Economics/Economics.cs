@@ -74,12 +74,9 @@ public class Economics : MonoBehaviour
     {
         if (Block >= 10)
         {
-            int resultBlocks= Block%10;
-            Debug.Log(resultBlocks + "rest Blocks");
-            int looseBlock=Block-resultBlocks;
-            Debug.Log(looseBlock + " Loose Blocks");
-            int addMoney= looseBlock/2;
-            Debug.Log(addMoney + " To add money");
+            int resultBlocks= Block%10;           
+            int looseBlock=Block-resultBlocks;           
+            int addMoney= looseBlock/2;          
            int resultMoney= Money+ addMoney;
 
               _money.DOCounter(Money, resultMoney, 0.5f)
