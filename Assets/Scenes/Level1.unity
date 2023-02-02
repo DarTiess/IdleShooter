@@ -1127,6 +1127,9 @@ MonoBehaviour:
   _enemyList:
   - {fileID: 5411551430985854478, guid: baaeece56d56f33419096b9af280982f, type: 3}
   - {fileID: 5411551430985854478, guid: bbf61debf37d01c4f8976ae2a52b1f5b, type: 3}
+  _keyList:
+  - Enemy_Moved_Walking
+  - Enemy_Moved_Flying
   startPosition: {fileID: 1648568139}
   endPosition: {fileID: 1635535908}
   _finishLine: {fileID: 575302808}

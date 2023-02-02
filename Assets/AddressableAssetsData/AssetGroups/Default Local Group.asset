@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: a727d63420a744d418fb0b4ac268d43c
+  m_SerializeEntries:
+  - m_GUID: 25ada348ca6abee4dab19d678937a0ea
+    m_Address: Enemy_Moved_Fixed
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bbf61debf37d01c4f8976ae2a52b1f5b
+    m_Address: Enemy_Moved_Flying
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: baaeece56d56f33419096b9af280982f
+    m_Address: Enemy_Moved_Walking
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: ce3a48665b3a3904a846744add6ea4ad, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 4d7b11b5d21c3744b904298bc8c21d11, type: 2}
+    - {fileID: 11400000, guid: ea1caa0b75a60744d8c41d7fdc413fb5, type: 2}
