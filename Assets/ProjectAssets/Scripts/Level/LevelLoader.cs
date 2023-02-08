@@ -6,41 +6,33 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : ScriptableObject
 {
     public List<string> ScenesList;
-      public int NumScene
-    {                    
+    public int NumScene
+    {
         get { return PlayerPrefs.GetInt("NumOfScene"); }
         set { PlayerPrefs.SetInt("NumOfScene", value); }
     }
 
     public void StartGame()
     {
-        if (NumScene == 0) NumScene = 1;
-        
-        LoadScene();    
+        LoadScene();
     }
 
     public void LoadNextLevel()
     {
         NumScene += 1;
-        
-        LoadScene();           
+
+        LoadScene();
     }
 
     public void LoadScene()
     {
-        int numLoadedScene = NumScene;
+        if (NumScene >= ScenesList.Count)
+        {
+            NumScene = 0;
+        }
+        Debug.Log("Load Scene Number " + NumScene);
 
-        if (numLoadedScene <=ScenesList.Count)
-            {
-            numLoadedScene -= 1;
-            }
-        if (numLoadedScene > ScenesList.Count)
-            {
-            numLoadedScene = 0;
-            }
-        Debug.Log("Load Scene Number " + numLoadedScene);
-
-        SceneManager.LoadScene(ScenesList[numLoadedScene]);
+        SceneManager.LoadScene(ScenesList[NumScene]);
     }
 
     public void RestartScene()

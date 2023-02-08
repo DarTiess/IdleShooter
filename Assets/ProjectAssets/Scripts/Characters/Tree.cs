@@ -4,11 +4,11 @@ using Zenject;
 
 public class Tree : MonoBehaviour
 {
-    [SerializeField]private List<Mesh> _meshesList;
-    int indexMesh=0;
+    [SerializeField] private List<Mesh> _meshesList;
+    private int indexMesh = 0;
     private MeshFilter _meshFilter;
 
-    PlayerMovement _player;
+    private PlayerMovement _player;
     [Inject]
     private void Initialization(PlayerMovement player)
     {
@@ -17,28 +17,28 @@ public class Tree : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _meshFilter= GetComponent<MeshFilter>();
+        _meshFilter = GetComponent<MeshFilter>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Melee"))
         {
-           ChangeMesh();
+            ChangeMesh();
         }
     }
     void ChangeMesh()
     {
-        if(indexMesh<_meshesList.Count)
+        if (indexMesh < _meshesList.Count)
         {
-             _meshFilter.mesh=_meshesList[indexMesh];
-             indexMesh++;          
+            _meshFilter.mesh = _meshesList[indexMesh];
+            indexMesh++;
         }
         else
         {
             _player.StopGettingTree();
             gameObject.SetActive(false);
         }
-       
+
     }
 }

@@ -1,14 +1,14 @@
 
 
 public enum EnemyBehavior
- {
-     Moved,
-     Fixed
- }
-   public enum EnemyMove
-    {
-        Walking,
-        Flying
-    }
+{
+    Moved,
+    Fixed
+}
+public enum EnemyMove
+{
+    Walking,
+    Flying
+}
 
 

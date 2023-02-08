@@ -10,17 +10,20 @@ public class LevelManager : MonoBehaviour
     public event Action OnLevelLost;
     public event Action OnLateLost;
 
-    [Space] [Header("LevelLoader")] public LevelLoader LevelLoader;
+    [Space][Header("LevelLoader")] public LevelLoader LevelLoader;
 
-    [Space] [Header("Time")] [Space] [SerializeField]
+    [Space]
+    [Header("Time")]
+    [Space]
+    [SerializeField]
     private float _timeWaitLose;
 
     [SerializeField] private float _timeWaitWin;
 
 
     private void Awake()
-    {                          
-       Time.timeScale = 0;
+    {
+        Time.timeScale = 0;
     }
 
     public void LevelStart()
@@ -61,7 +64,7 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-                          
+
     public void LoadNextLevel()
     {
         LevelLoader.LoadNextLevel();
@@ -72,7 +75,7 @@ public class LevelManager : MonoBehaviour
         LevelLoader.RestartScene();
     }
 
-   
+
     public void ClearProgress()
     {
         PlayerPrefs.DeleteAll();

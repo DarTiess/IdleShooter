@@ -8,12 +8,12 @@ public class PersonAnimator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _animator= GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
     }
 
     public void MoveAnimation(float speed)
     {
-         _animator.SetFloat("IsMove",speed);
+        _animator.SetFloat("IsMove", speed);
     }
 
     public void DeadAnimation()

@@ -1,5 +1,5 @@
 
- interface IHealth 
+interface IHealth
 {
-   public void TakeDamage(int attackpower);
+    public void TakeDamage(int attackpower);
 }

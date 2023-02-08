@@ -3,20 +3,21 @@ using UnityEngine;
 using Zenject;
 using UnityEngine.AddressableAssets;
 using System.Threading.Tasks;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    [SerializeField] private List<string> _keyList;    
+    [SerializeField] private List<string> _keyList;
     [Header("Position Settings")]
     [SerializeField] private Transform startPosition;
     [SerializeField] private Transform endPosition;
     [SerializeField] private GameObject _finishLine;
 
-    LevelManager _levelManager;
-    GameObject _player;
-    Economics _economics;
-    List<EnemyMovement> _enemyOnScene = new List<EnemyMovement>();
-
+    private LevelManager _levelManager;
+    private GameObject _player;
+    private Economics _economics;
+    private List<EnemyMovement> _enemyOnScene = new List<EnemyMovement>();
+    private List<AsyncOperationHandle> _handlers = new List<AsyncOperationHandle>();
     [Inject]
     private void Initialization(LevelManager levelManager, PlayerMovement player, Economics economics)
     {
@@ -52,13 +53,20 @@ public class EnemyGenerator : MonoBehaviour
         for (int i = 0; i < _keyList.Count; i++)
         {
 
-            var loadAssync = Addressables.LoadAssetAsync<GameObject>(_keyList[i]);
+           var loadAssync = Addressables.LoadAssetAsync<GameObject>(_keyList[i]);
+            _handlers.Add(loadAssync);
             await loadAssync.Task;
             InitializeEnemyToList(loadAssync.Result);
         }
     }
 
-
+    private void OnDisable()
+    {
+        foreach (var handler in _handlers)
+        {
+            Addressables.Release(handler);
+        }
+    }
     private void InitializeEnemyToList(GameObject obj)
     {
         float xPos = Random.Range(startPosition.position.x, endPosition.position.x);
