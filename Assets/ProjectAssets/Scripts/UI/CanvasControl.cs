@@ -45,6 +45,13 @@ public class CanvasControl : MonoBehaviour
         ActivateUIScreen(_panelMenu);
     }
 
+    private void OnDisable()
+    {
+         _levelManager.OnLevelStart -= OnLevelStart;
+        _levelManager.OnLateWin -= OnLevelWin;
+        _levelManager.OnLateLost -= OnLevelLost;
+    }
+
     void SwitchOnAllCanvasObjects()
     {
         foreach (CanvasGroup cG in _canvasGroupes)

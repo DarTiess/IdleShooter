@@ -43,6 +43,10 @@ public class PlayerMovement : MonoBehaviour, IHealth
         _levelManager.OnLevelPlay += OnPlay;
     }
 
+    private void OnDisable()
+    {
+        _levelManager.OnLevelPlay -= OnPlay;
+    }
     public void OnPlay()
     {
         _canMove = true;

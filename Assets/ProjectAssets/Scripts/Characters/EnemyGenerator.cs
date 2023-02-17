@@ -29,6 +29,14 @@ public class EnemyGenerator : MonoBehaviour
         _economics.OnGetMoney += DeleteEnemyFromList;
     }
 
+     private void OnDisable()
+    {
+        foreach (var handler in _handlers)
+        {
+            Addressables.Release(handler);
+        }
+         _levelManager.OnLevelPlay -= OnPlay;
+    }
     private void DeleteEnemyFromList(EnemyMovement enemy)
     {
         _enemyOnScene.Remove(enemy);
@@ -60,13 +68,7 @@ public class EnemyGenerator : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        foreach (var handler in _handlers)
-        {
-            Addressables.Release(handler);
-        }
-    }
+   
     private void InitializeEnemyToList(GameObject obj)
     {
         float xPos = Random.Range(startPosition.position.x, endPosition.position.x);
